@@ -3,7 +3,7 @@
 
 namespace AOCHelper
 {
-    internal class AOCHelper
+    internal class Program
     {
         static void Main(string[] args)
         {
