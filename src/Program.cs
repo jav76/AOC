@@ -1,7 +1,7 @@
 ﻿
 
 
-namespace AOCHelper
+namespace AOC
 {
     internal class Program
     {
