@@ -8,6 +8,8 @@ namespace AOCHelper
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
+
+            Console.WriteLine(AOCRepo.GetSessionToken());
         }
     }
 }
