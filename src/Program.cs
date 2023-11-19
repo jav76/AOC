@@ -12,7 +12,7 @@ namespace AOC
 
             while (true)
             {
-                MenuSelection(currentDay, currentYear);
+                (currentDay, currentYear) = MenuSelection(currentDay, currentYear);
             }
 
         }
