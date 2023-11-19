@@ -11,6 +11,6 @@ namespace AOC.Solutions
         public void Init(string inputText);
         public string Part1Solution();
         public string Part2Solution();
-        public void GenerateSolutions(string outputPath);
+        public (string? part1, string? part2) GenerateSolutions(string outputPath);
     }
 }

@@ -32,9 +32,11 @@ namespace AOC.Solutions
             return string.Empty; // Return the solution
         }
 
-        public void GenerateSolutions(string outputPath)
+        public (string? part1, string? part2) GenerateSolutions(string outputPath)
         {
             GenerateSolutionsInternal(outputPath);
+
+            return (null, null); // todo return solutions here
         }
 
         private void GenerateSolutionsInternal(string outputPath)
