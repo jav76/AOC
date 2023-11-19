@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Net;
+﻿using System.Net;
 
 namespace AOC
 {
     internal class AOCRepo
     {
-        private const string YEAR = "2022";
         private const string SESSION_FILE_PATH = "Secrets/Session.txt";
-        private const string INPUT_BASE_PATH = @$"https://adventofcode.com/{YEAR}/day/";
-
+        private const string BASE_ADDRESS = "https://adventofcode.com";
         public static string GetSessionToken()
         {
             try
@@ -31,16 +23,17 @@ namespace AOC
             return string.Empty;
         }
 
-        public static async Task<string> GetInput(short day, string sessionID)
+        public static async Task<string> GetInput(short day, short year, string sessionID)
         {
             string inputText = string.Empty;
             using (HttpClientHandler handler = GetClientHandler())
             {
                 using (HttpClient client = new HttpClient(handler))
                 {
+                    client.BaseAddress = new Uri(BASE_ADDRESS);
                     try
                     {
-                        HttpResponseMessage response = await client.GetAsync(new Uri($"{INPUT_BASE_PATH}{day}/input"));
+                        HttpResponseMessage response = await client.GetAsync(new Uri($"{BASE_ADDRESS}/{year}/day/{day}/input"));
 
                         response.EnsureSuccessStatusCode();
                         inputText = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -58,11 +51,11 @@ namespace AOC
         private static CookieContainer GetSessionCookies(string sessionID)
         {
             CookieContainer cookieContainer = new CookieContainer(1);
-            cookieContainer.Add(new Cookie
-            {
-                Name = "session",
-                Value = sessionID,
-            });
+            cookieContainer.SetCookies
+            (
+                new Uri(BASE_ADDRESS),
+                $"session={sessionID}"
+            );
 
             return cookieContainer;
         }
