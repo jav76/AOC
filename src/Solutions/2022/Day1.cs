@@ -23,7 +23,7 @@ namespace AOC.Solutions._2022
                 int currentCalories = 0;
                 if (int.TryParse(line, out currentCalories))
                 {
-                    currentSum+= currentCalories;
+                    currentSum += currentCalories;
                 }
             }
 

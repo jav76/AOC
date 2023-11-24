@@ -5,7 +5,7 @@ namespace AOC
     internal class AOCRepo
     {
         private const string SESSION_FILE_PATH = "Secrets/Session.txt";
-        private const string BASE_ADDRESS = "https://adventofcode.com";
+        private const string BASE_ADDRESS = @"https://adventofcode.com";
         public static string GetSessionToken()
         {
             try

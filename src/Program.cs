@@ -44,6 +44,7 @@ namespace AOC
                     switch (selection)
                     {
                         case 1:
+                            Console.Clear();
                             menuResult.year = GetSelection(MenuSelectionEnum.Year);
                             break;
 
