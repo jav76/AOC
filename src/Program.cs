@@ -21,7 +21,7 @@ namespace AOC
         {
             var menuResult = (day, year);
 
-            Console.Clear();
+            //Console.Clear();
 
             Console.WriteLine($"Advent of code {year} - Day {(day.HasValue ? day.Value : "[None]")}\n");
             
@@ -44,29 +44,38 @@ namespace AOC
                     switch (selection)
                     {
                         case 1:
-                            menuResult.year = GetYearSelection(); // todo
+                            menuResult.year = GetSelection(MenuSelectionEnum.Year);
                             break;
 
                         case 2:
-                            menuResult.day = GetDaySelection(); // todo
+                            Console.Clear();
+                            menuResult.day = GetSelection(MenuSelectionEnum.Day);
                             break;
 
                         case 3:
                             if (day.HasValue)
                             {
-                                GenerateSolution(day.Value, 1, year); // todo
+                                Console.WriteLine(AOCHelper.GenerateSolution(day.Value, 1, year));
+                            }
+                            else
+                            {
+                                Console.Write("Day must be selected first.");
                             }
                             break;
 
                         case 4:
                             if (day.HasValue)
                             {
-                                GenerateSolution(day.Value, 2, year); // todo
+                                Console.WriteLine(AOCHelper.GenerateSolution(day.Value, 2, year));
+                            }
+                            else
+                            {
+                                Console.Write("Day must be selected first.");
                             }
                             break;
 
                         case 5:
-                            System.Environment.Exit(0);
+                            Environment.Exit(0);
                             break;
 
                         default:
@@ -76,6 +85,39 @@ namespace AOC
             }
 
             return menuResult;
+        }
+
+        private enum MenuSelectionEnum
+        {
+            Day = 1,
+            Year = 2
+        }
+
+        private static short GetSelection(MenuSelectionEnum selection)
+        {
+            short result = 0;
+            Console.WriteLine
+            (
+                selection == MenuSelectionEnum.Day
+                    ? "Enter day selection:\n"
+                    : "Entry year selection:\n"
+            );
+            string? input = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(input))
+            {
+                if (short.TryParse(input, out result) && result >= 1)
+                {
+                    return result;
+                }
+                else
+                {
+                    return GetSelection(selection);
+                }
+            }
+            else
+            {
+                return GetSelection(selection);
+            }
         }
     }
 }

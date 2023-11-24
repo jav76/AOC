@@ -6,7 +6,8 @@ namespace AOC.Solutions
     /// </summary>
     internal abstract class SolutionBase : ISolution
     {
-        private string _inputText { get; set; } = string.Empty;
+        public string InputText { get; set; } = string.Empty;
+        public List<string> InputLines { get; set; } = new List<string>();
 
         public SolutionBase()
         {
@@ -15,37 +16,39 @@ namespace AOC.Solutions
 
         public void Init(string inputText)
         {
-            _inputText = inputText;
+            InputText = inputText;
+            InputLines = inputText.Split('\n').ToList();
         }
 
-        public string Part1Solution()
+        public virtual string Part1Solution()
         {
             /// Do the stuff
             
             return string.Empty; // Return the solution
         }
 
-        public string Part2Solution()
+        public virtual string Part2Solution()
         {
             /// Do the stuff
 
             return string.Empty; // Return the solution
         }
 
-        public (string? part1, string? part2) GenerateSolutions(string outputPath)
+        public (string? part1, string? part2) GenerateSolutions()
         {
-            GenerateSolutionsInternal(outputPath);
-
-            return (null, null); // todo return solutions here
+            return GenerateSolutionsInternal();
         }
 
-        private void GenerateSolutionsInternal(string outputPath)
+        private (string? part1, string? part2) GenerateSolutionsInternal()
         {
-            GenerateSolutionPart(outputPath, 1);
-            GenerateSolutionPart(outputPath, 2);
+            return
+            (
+                GenerateSolutionPart(1),
+                GenerateSolutionPart(2)
+            );
         }
 
-        private void GenerateSolutionPart(string outputPath, short part)
+        private string? GenerateSolutionPart(short part)
         {
             string solutionText = string.Empty;
             switch (part)
@@ -61,11 +64,7 @@ namespace AOC.Solutions
                     throw new InvalidOperationException("Invalid solution part.");
             } 
 
-            using(StreamWriter writer = new StreamWriter(solutionText))
-            {
-                writer.Write(solutionText);
-            }
-
+            return solutionText;
         }
     }
 }
