@@ -7,7 +7,7 @@ namespace AOC
     {
         static void Main(string[] args)
         {
-            short currentYear = 2022;
+            short currentYear = 2023;
             short? currentDay = null;
 
             while (true)
