@@ -17,7 +17,7 @@ namespace AOC.Solutions
         public void Init(string inputText)
         {
             InputText = inputText;
-            InputLines = inputText.Split('\n').ToList();
+            InputLines = inputText.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
         public virtual string Part1Solution()
