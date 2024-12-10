@@ -6,10 +6,15 @@ namespace AOC.Solutions._2024
     {
         List<int> _numbers1 = new();
         List<int> _numbers2 = new();
+
+        public override void Init(string inputText)
+        {
+            base.Init(inputText);
+            SetNumberPairs();
+        }
+
         public override string Part1Solution()
         {
-            GetNumberPairs();
-
             int differenceSum = 0;
             IReadOnlyList<int> sortedNumbers1 = _numbers1.OrderBy(x => x).ToList();
             IReadOnlyList<int> sortedNumbers2 = _numbers2.OrderBy(x => x).ToList();
@@ -24,19 +29,17 @@ namespace AOC.Solutions._2024
 
         public override string Part2Solution()
         {
-            GetNumberPairs();
-
             int similarityScore = 0;
 
             foreach (int number1 in _numbers1)
             {
-                similarityScore += number1 * _numbers2.Where(x => x == number1).Count();
+                similarityScore += number1 * _numbers2.Count(x => x == number1);
             }
 
             return similarityScore.ToString(); 
         }
 
-        private (IEnumerable<int>, IEnumerable<int>) GetNumberPairs()
+        private void SetNumberPairs()
         {
             List<int> numbers1 = new();
             List<int> numbers2 = new();
@@ -51,8 +54,6 @@ namespace AOC.Solutions._2024
 
             _numbers1 = numbers1;
             _numbers2 = numbers2;
-
-            return (numbers1, numbers2);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace AOC
             return string.Empty;
         }
 
-        public static async Task<string> GetInput(short day, short year, string sessionID)
+        public static async Task<string> GetInput(short day, short year)
         {
             string inputText = string.Empty;
             using (HttpClientHandler handler = GetClientHandler())

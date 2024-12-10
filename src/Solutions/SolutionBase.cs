@@ -9,30 +9,25 @@ namespace AOC.Solutions
         public string InputText { get; set; } = string.Empty;
         public List<string> InputLines { get; set; } = new List<string>();
 
-        public SolutionBase()
-        {
+        protected SolutionBase() { }
 
-        }
-
-        public void Init(string inputText)
+        public virtual void Init(string inputText)
         {
             InputText = inputText;
             InputLines = inputText.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
-        public virtual string Part1Solution()
-        {
-            /// Do the stuff
-            
-            return string.Empty; // Return the solution
-        }
+        /// <summary>
+        /// Implement the solution for part 1 of the day's puzzle.
+        /// </summary>
+        /// <returns>The solution should be returned as a string.</returns>
+        public abstract string? Part1Solution();
 
-        public virtual string Part2Solution()
-        {
-            /// Do the stuff
-
-            return string.Empty; // Return the solution
-        }
+        /// <summary>
+        /// Implement the solution for part 2 of the day's puzzle.
+        /// </summary>
+        /// <returns>The solution should be returned as a string.</returns>
+        public abstract string? Part2Solution();
 
         public (string? part1, string? part2) GenerateSolutions()
         {
@@ -50,20 +45,12 @@ namespace AOC.Solutions
 
         private string? GenerateSolutionPart(short part)
         {
-            string solutionText = string.Empty;
-            switch (part)
+            string? solutionText = part switch
             {
-                case 1:
-                    solutionText = Part1Solution();
-                    break;
-                case 2:
-                    solutionText = Part2Solution();
-                    break;
-
-                default:
-                    throw new InvalidOperationException("Invalid solution part.");
-            } 
-
+                1 => Part1Solution(),
+                2 => Part2Solution(),
+                _ => throw new InvalidOperationException("Invalid solution part."),
+            };
             return solutionText;
         }
     }

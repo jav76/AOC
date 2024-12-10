@@ -21,8 +21,6 @@ namespace AOC
         {
             var menuResult = (day, year);
 
-            //Console.Clear();
-
             Console.WriteLine($"Advent of code {year} - Day {(day.HasValue ? day.Value : "[None]")}\n");
             
             StringBuilder sb = new StringBuilder();

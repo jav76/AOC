@@ -5,10 +5,7 @@ namespace AOC
 {
     internal class AOCHelper
     {
-        public AOCHelper()
-        {
-
-        }
+        protected AOCHelper() { }
 
         public static string GenerateSolution(short day, short part, short year)
         {
@@ -22,16 +19,16 @@ namespace AOC
                     return string.Empty;
                 }
 
-                solutionInstance.Init(AOCRepo.GetInput(day, year, AOCRepo.GetSessionToken()).Result);
+                solutionInstance.Init(AOCRepo.GetInput(day, year).Result);
                 (string? part1, string? part2) = solutionInstance.GenerateSolutions();
 
                 switch (part)
                 {
                     case 1:
-                        return part1 ?? string.Empty;
+                        return $"Part 1 solution: {part1 ?? string.Empty}";
 
                     case 2:
-                        return part2 ?? string.Empty;
+                        return $"Part 2 solution: {part2 ?? string.Empty}";
 
                     default:
                         Console.WriteLine("Invalid solution part.");
